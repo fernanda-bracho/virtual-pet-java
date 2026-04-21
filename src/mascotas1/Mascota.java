@@ -2,7 +2,9 @@
 package mascotas1;
 //falta mejorar metodos y logica para cuando este en numeros negativos
 
-public class Mascota {
+import java.util.Scanner;
+
+public abstract class Mascota {
     private String nombre;
     private int hambre;
     private int energia;
@@ -20,8 +22,8 @@ public class Mascota {
       
            hambre+=5;
        felicidad+=2;  
-       System.out.println("Pino ha ganado 2 puntos de felicidad <3");
-        System.out.println("Pino tiene menos hambre");
+       System.out.println(getnombre() + " ha ganado 2 puntos de felicidad <3");
+        System.out.println(getnombre() +" tiene menos hambre");
         
       
         }
@@ -86,13 +88,23 @@ public class Mascota {
          
 }
     
-    public void dificultad(){
-     int randomnumpos = (int) (Math.random() * 2);
-     int randomnumneg = (int) (Math.random() * 2);
+    abstract void dificultad();
+    abstract void instrucciones();
+    abstract void especial();
 
-    hambre=  hambre - randomnumpos;
-    
+
+    public String getrespuesta() {
+        Scanner teclado = new Scanner(System.in);
+        String respuesta = teclado.next();
+        respuesta = respuesta.toLowerCase();
+
+        while (!respuesta.equals("si") && !respuesta.equals("no")) {
+            System.out.println("Respuesta invalida, ingrese de nuevo la respuesta (si/no)");
+            respuesta = teclado.next();
+            respuesta = respuesta.toLowerCase();
+        }
+
+        return respuesta;
     }
-    
 
 }

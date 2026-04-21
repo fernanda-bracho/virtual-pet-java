@@ -8,14 +8,17 @@ static boolean estado = true;
     public static void main(String[] args) {
         int controndas =1;
         int op;
-        Mascota uno = new Mascota();
+        int a;
         Scanner teclado = new Scanner(System.in);
         
         System.out.println("Bienvenido al juego de mascotas hechos por ferxxoo");
+        System.out.println("Que tipo de mascota quieres? 1.Gato \n 2.Perro \n3.Pajaro");
+        a = teclado.nextInt();
+        Mascota uno = eleccion(a);
         System.out.println("Para iniciar,como se llamara tu mascota?");
         uno.setnombre(teclado.next());
         System.out.println("Awwwwwww,me gusta mucho el nombre de " + uno.getnombre());
-        
+        uno.instrucciones();
         uno.setenergia(10);
         uno.setfelicidad(10);
         uno.sethambre(10);
@@ -62,7 +65,26 @@ static boolean estado = true;
 }
     
     
-    
+   public static Mascota eleccion(int a){
+        Mascota seleccionada = null;
+        if (a == 1){
+           seleccionada = new Gato();
+            System.out.println("Genial, entonces sera un gato");
+        } else if (a == 2) {
+            seleccionada = new Perro();
+        } else if (a == 3) {
+            seleccionada = new pajaro();
+
+        }else return seleccionada;
+    return seleccionada;
+   }
+
+   public static void geteleccion(){
+        return ;
+
+   }
+
+
     
     
     
