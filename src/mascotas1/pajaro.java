@@ -1,14 +1,17 @@
 package mascotas1;
 
 import java.util.Scanner;
-
+//buffeado en energia pero nerfeado en felicidad
+//game over por castroso
 public class pajaro extends Mascota implements ruidoso{
 Scanner teclado = new Scanner(System.in);
     public pajaro(){
-        setenergia(10);
-        setfelicidad(10);
-        sethambre(5);
+        setenergia(15);
+        setfelicidad(8);
+        sethambre(8);
         setvivo(true);
+        setPeligrovecinos(0);
+
     }
 
 
@@ -20,9 +23,9 @@ Scanner teclado = new Scanner(System.in);
 
     @Override
     public void dificultad(){
-        int felicidad;
-        felicidad = getfelicidad() -2;
-
+        super.dificultad();
+        System.out.println( getnombre() + " esta piando muy fuerte...");
+        Mascotas1.usuario.modificarPaciencia(-5);
     }
 
     @Override
@@ -33,7 +36,7 @@ Scanner teclado = new Scanner(System.in);
         System.out.println("tu mascota es muy ruidosa!!!");
         System.out.println("Tu mascota es ruidosa por lo que siempre esta hambrienta ");
         setenergia(15);
-        System.out.println("su hambre es de solo 5 :(");
+        System.out.println("su hambre es de solo 8 :(");
     }
 
     @Override
@@ -43,12 +46,12 @@ Scanner teclado = new Scanner(System.in);
 
     @Override
     public void grito(){
-        int llamadasvecinos = 0;
         System.out.println(getnombre()+ " HA ESTADO GRITANDO Y HACIENDO MUCHO RUIDOOO");
             double probabilidad = Math.random();
-            if (probabilidad <= 0.30) { // 30% de probabilidad
+            if (probabilidad <= 0.30) {
                 System.out.println(getnombre() + " Los vecinos llamaron a tu puerta, te lanzaron una advertencia, ten cuidado...");
-                llamadasvecinos++;
+                Mascotas1.llamadasvecinos++;
+                setPeligrovecinos(getpeligrovecinos() + 1);
             } else {
                 System.out.println(getnombre() + " se calmo ");
             }
